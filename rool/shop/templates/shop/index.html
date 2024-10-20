@@ -1,0 +1,55 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block css %}
+    <link href="{% static 'sh/css/index.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<section class="bg-dark text-light py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="mt-5">Добро пожаловать в Rool_Shop!</h1>
+                <p class="lead">
+                    🌟 Мы рады представить вам мир удобного и увлекательного транспорта! 🚴‍♂️🛵
+                    Ищете идеальное средство передвижения для активной жизни на свежем воздухе?
+                    У нас вы найдете широкий ассортимент гироскутеров, скутеров, велосипедов, лыж, коньков и других видов транспорта,
+                    которые подойдут как для городской суеты, так и для захватывающих приключений на природе. 🌲🏞️
+                </p>
+                <p>
+                    В нашем магазине вы найдете только качественные товары по низким ценам от проверенных производителей,
+                    чтобы каждая поездка приносила только радость и комфорт. Присоединяйтесь к нашему сообществу
+                    любителей активного отдыха и выберите свой идеальный транспорт!
+                </p>
+                <a id="start-purchase-link" href="{% url 'products:index' %}" class="btn btn-secondary btn-lg mt-3">
+                    Начать покупки
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Почему выбирают нас?</h2>
+        <div class="row">
+            <div class="col-lg-4 text-center">
+                <img src="{% static 'sh/img/piu/x.jpg' %}" alt="Low Prices" class="img-fluid mb-3">
+                <h4 class="text-center">Низкие цены</h4>
+                <p class="text-center">Мы предлагаем доступные цены на широкий ассортимент товаров, чтобы вы могли наслаждаться активным отдыхом, не тратя много.</p>
+            </div>
+            <div class="col-lg-4 text-center">
+                <img src="{% static 'sh/img/piu/f.jpg' %}" alt="High Quality" class="img-fluid mb-3">
+                <h4 class="text-center">Качество</h4>
+                <p class="text-center">Наши товары от проверенных производителей гарантируют высокое качество и надежность на каждом шаге.</p>
+            </div>
+            <div class="col-lg-4 text-center">
+                <img src="{% static 'sh/img/piu/1.jpg' %}" alt="Excellent Service" class="img-fluid mb-3">
+                <h4 class="text-center">Разнообразие</h4>
+                <p class="text-center">Наша команда всегда готова помочь вам выбрать из широкого ассортимента товаров, чтобы вы нашли именно то, что подходит для вашего активного образа жизни. Мы стремимся удовлетворить ваши потребности и обеспечить комфорт в каждой поездке!</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

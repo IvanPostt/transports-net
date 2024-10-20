@@ -1,0 +1,106 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block css %}
+    <link href="{% static 'sh/css/products.css' %}" rel="stylesheet">
+     <style>
+        .category-list a {
+            background-color: #f8f9fa;
+            color: #343a40;
+            border: 1px solid #dee2e6;
+            margin-bottom: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .category-list a:hover {
+            background-color: #343a40;
+            color: #ffffff;
+            border-color: #343a40;
+        }
+        .products-section {
+            margin-top: 20px;
+        }
+        </style>
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-3">
+
+            <h1 class="my-4">Каталог товаров</h1>
+            <div class="list-group category-list">
+                {% for category in categories %}
+                <a href="{% url 'shop:category' category.id %}" class="list-group-item">{{ category.name }}</a>
+                {% endfor %}
+            </div>
+
+        </div>
+        <!-- /.col-lg-3 -->
+
+        <div class="col-lg-9 products-section">
+
+            <div class="row">
+                {% for transport in transports %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <a href="#">
+                            <img class="card-img-top"
+                                 src="{{ transport.image.url }}"
+                                 alt="">
+                        </a>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#">{{ transport.name }}</a>
+                            </h4>
+                            <h5>{{ transport.price }}</h5>
+                            <p class="card-text">{{ transport.description }}</p>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a class="btn btn-outline-success" href="{% url 'shop:basket_add' transport.id %}">В корзину</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <!-- Кнопка "Назад" -->
+                    <li class="page-item {% if not transports.has_previous %} disabled {% endif %}">
+                        <a class="page-link rounded" href="{% if transports.has_previous %}{% url 'shop:paginator' transports.previous_page_number %}{% else %}#{% endif %}" tabindex="-1" aria-disabled="true">Назад</a>
+                    </li>
+                    {% for page in transports.paginator.page_range %}
+                        <li class="page-item {% if page == transports.number %} active {% endif %}">
+                            <a class="page-link rounded" href="{% url 'shop:paginator' page %}">{{ page }}</a>
+                        </li>
+                    {% endfor %}
+                    <!-- Кнопка "Вперед" -->
+                    <li class="page-item {% if not transports.has_next %} disabled {% endif %}">
+                        <a class="page-link rounded" href="{% if transports.has_next %}{% url 'shop:paginator' transports.next_page_number %}{% else %}#{% endif %}">Вперед</a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
+
+
+{% block footer %}
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">&copy; Rool Shop 2024</p>
+    </div>
+    <!-- /.container -->
+</footer>
+{% endblock %}
