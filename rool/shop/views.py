@@ -15,7 +15,7 @@ def products(request, category_id=None, page_number=1):
         transports = Transport.objects.filter(category=category)
     else:
         transports = Transport.objects.all()
-    per_page = 6
+    per_page = 12
     paginator = Paginator(transports, per_page)
     transport_paginator = paginator.page(page_number)
 
