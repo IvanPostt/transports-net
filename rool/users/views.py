@@ -6,6 +6,8 @@ from shop.models import Basket
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from users.forms import UserLoginForm, UserRegisterForm, UserProfileForm
+
+
 # Create your views here.
 def login(request):
     if request.method == 'POST':
@@ -22,17 +24,20 @@ def login(request):
     context = {'form': form}
     return render(request, 'users/login.html', context)
 
+
 def register(request):
-     if request.method == 'POST':
-         form = UserRegisterForm(data=request.POST)
-         if form.is_valid():
-             form.save()
-             messages.success(request, 'Зарегестрирование успешно завершено')
-             return HttpResponseRedirect(reverse('users:login'))
-     else:
-         form = UserRegisterForm()
-     context = {'form': form}
-     return render(request, 'users/register.html', context)
+    if request.method == 'POST':
+        form = UserRegisterForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Зарегестрирование успешно завершено')
+            return HttpResponseRedirect(reverse('users:login'))
+    else:
+        form = UserRegisterForm()
+    context = {'form': form}
+    return render(request, 'users/register.html', context)
+
+
 @login_required
 def profile(request):
     if request.method == 'POST':
@@ -53,16 +58,18 @@ def profile(request):
     #      total_sum = total_sum + basket.sum()
     #      total_quantity = total_quantity + basket.quantity
     context = {'title': 'Профиль',
-               'form':form,
+               'form': form,
                'baskets': baskets,
-               #'total_sum': total_sum,
-               #'total_quantity': total_quantity
-     }
+               # 'total_sum': total_sum,
+               # 'total_quantity': total_quantity
+               }
     return render(request, 'users/profile.html', context)
+
 
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect(reverse('index'))
+
 
 def password_reset(request):
     if request.method == 'POST':

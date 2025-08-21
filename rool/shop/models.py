@@ -1,5 +1,4 @@
 from django.db import models
-
 from users.models import User
 
 
@@ -11,6 +10,7 @@ class CatTransport(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Transport(models.Model):
     name = models.CharField(max_length=300)
@@ -27,8 +27,10 @@ class Transport(models.Model):
 class BasketQuerySet(models.QuerySet):
     def total_sum(self):
         return sum(basket.sum() for basket in self)
+
     def total_quantity(self):
         return sum(basket.quantity for basket in self)
+
 
 class Basket(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)

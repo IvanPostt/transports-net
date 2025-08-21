@@ -5,9 +5,11 @@ from users.models import User
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 
+
 def index(request):
     context = {'title': 'Rool Shop', 'username': 'bingo'}
     return render(request, 'shop/index.html', context)
+
 
 def products(request, category_id=None, page_number=1):
     if category_id:
@@ -23,6 +25,8 @@ def products(request, category_id=None, page_number=1):
                'categories': CatTransport.objects.all(),
                'transports': transport_paginator}
     return render(request, 'shop/products.html', context)
+
+
 @login_required
 def basket_add(request, product_id):
     product = Transport.objects.get(id=product_id)
@@ -34,6 +38,7 @@ def basket_add(request, product_id):
         basket.quantity += 1
         basket.save()
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
 
 @login_required
 def basket_remove(request, basket_id):

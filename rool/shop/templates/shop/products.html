@@ -23,6 +23,15 @@
         .products-section {
             margin-top: 20px;
         }
+        a {
+            text-decoration: none;
+            color: #2AABEE;
+            font-weight: bold;
+        }
+        .telegram-icon {
+            font-size: 18px;
+            margin-right: 5px;
+        }
         </style>
 {% endblock %}
 
@@ -59,7 +68,7 @@
                             <h4 class="card-title">
                                 <a href="#">{{ transport.name }}</a>
                             </h4>
-                            <h5>{{ transport.price }}</h5>
+                            <h5>{{ transport.price }} ₽</h5>
                             <p class="card-text">{{ transport.description }}</p>
                         </div>
                         <div class="card-footer text-center">
@@ -96,8 +105,14 @@
 {% block footer %}
 <footer class="py-5 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">&copy; 2025 Rool Shop - Ваш магазин для скутеров, гироскутеров, квадроциклов, и др. видов транспорта</p>
+        <p class="m-0 text-center text-white">&copy; 2025 Rool Shop - Магазин для скутеров, гироскутеров, квадроциклов, и др. видов транспорта</p>
         <p class="text-center text-white">Мы предлагаем широкий выбор товаров для активного отдыха и удобного передвижения!</p>
+        <p class="text-center text-white">
+        Если нужна детальная помощь по подбору средств, перейдите по ссылке в
+        <a href="#" target="_blank">
+            <span class="telegram-icon"></span>Telegram-бота
+        </a>.
+    </p>
     </div>
     <!-- /.container -->
 </footer>
