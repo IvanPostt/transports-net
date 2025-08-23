@@ -45,3 +45,9 @@ def basket_remove(request, basket_id):
     basket = Basket.objects.get(id=basket_id)
     basket.delete()
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+@login_required
+def count_total(request):
+    baskets = Basket.objects.filter(user=request.user)
+    context = {'baskets': baskets}
+    return render(request, 'shop/count_total.html', context=context)

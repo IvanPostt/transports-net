@@ -22,6 +22,18 @@ class RegisterUserTest(TestCase):
             'username': 'rool',
             'password': 'pipipipi'
         }
+        self.user = {
+            'username': 'rool',
+            'city': 'Minsk',
+            'image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTSDZkJpfJZuBUtCO2O5POp69VoIKklbXpFg&s',
+            'email': 'tert@gmail.com',
+        }
+
+        self.update_user = {
+            'username': 'rool',
+            'password1': 'piupiu1',
+            'password2': 'piupiu1',
+        }
 
     def test_form_reg(self):
         path = reverse('users:register')
@@ -72,3 +84,22 @@ class RegisterUserTest(TestCase):
         path = reverse('users:login')
         response = self.client.post(path, self.data)
         self.assertEqual(response.status_code, HTTPStatus.OK)
+
+    def test_user_password_resert_fail_pass(self):
+        self.data['password2'] = 'jijidw'
+        path = reverse('users:password_reset')
+        response = self.client.post(path, self.data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+
+    def test_user_password_resert_fail_username(self):
+        self.data['username'] = 'jiejw'
+        path = reverse('users:password_reset')
+        response = self.client.post(path, self.data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertContains(response, 'Пользователь не найден')
+
+
+    def test_user_profile(self):
+        path = reverse('users:profile')
+        response = self.client.get(path)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)

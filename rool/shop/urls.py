@@ -1,5 +1,5 @@
 from django.urls import path
-from shop.views import products, basket_add, basket_remove
+from shop.views import products, basket_add, basket_remove, count_total
 
 app_name = 'shop'
 urlpatterns = [
@@ -8,4 +8,5 @@ urlpatterns = [
     path('page/<int:page_number>/', products, name='paginator'),
     path('baskets/add/<int:product_id>/', basket_add, name='basket_add'),
     path('baskets/remove/<int:basket_id>/', basket_remove, name='basket_remove'),
+    path('payments/', count_total, name='payment')
 ]

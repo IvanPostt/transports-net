@@ -29,7 +29,7 @@
             <h5 class="float-right mb-0">{{ baskets.total_sum }} руб.</h5>
         </div>
     </div>
-    <a class="btn btn-dark btn-sm mt-3 float-right" href="#">
+    <a class="btn btn-dark btn-sm mt-3 float-right" href="{% url 'products:payment' %}">
         Cформировать счет заказа
     </a>
 {% else %}
