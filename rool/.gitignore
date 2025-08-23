@@ -8,6 +8,7 @@ staticfiles/
 .DS_Store
 .vscode/
 .idea/
+jquery
 .env/
 *.swp
 *.swo
