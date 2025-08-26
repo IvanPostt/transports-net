@@ -40,12 +40,6 @@ class UserRegisterForm(UserCreationForm):
         record = EmailVerification.objects.create(code=uuid.uuid4(), user=user, expiration=expiration)
         record.send_verification_email()
         return user
-    # def save(self, commit=True):
-    #     user = super(UserRegisterForm, self).save(commit=True)
-    #     expiration = now() + timedelta(hours=72)
-    #     record = EmailVerification.objects.create(code=uuid.uuid4(), user=user, expiration=expiration)
-    #     record.send_verification_email(user)
-    #     return user
 
 
 class UserProfileForm(UserChangeForm):

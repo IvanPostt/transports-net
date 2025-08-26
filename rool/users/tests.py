@@ -98,7 +98,6 @@ class RegisterUserTest(TestCase):
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertContains(response, 'Пользователь не найден')
 
-
     def test_user_profile(self):
         path = reverse('users:profile')
         response = self.client.get(path)

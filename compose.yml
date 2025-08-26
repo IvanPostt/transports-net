@@ -1,0 +1,11 @@
+version: "3.12"
+services:
+  web:
+    build: .
+    container_name: django_app
+    working_dir: /app/rool
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - '8000:8000'
